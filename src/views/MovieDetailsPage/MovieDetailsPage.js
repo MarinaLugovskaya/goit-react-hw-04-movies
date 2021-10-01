@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import {
   NavLink,
   useParams,
@@ -7,10 +7,10 @@ import {
   useRouteMatch,
   useLocation,
   useHistory,
-} from "react-router-dom";
-import { fetchMovieById } from "../../services/Api";
-import Cast from "../../views/Cast/Cast";
-import Reviews from "../../views/Reviews/Reviews";
+} from 'react-router-dom';
+import { fetchMovieById } from '../../services/Api';
+import Cast from '../../views/Cast/Cast';
+import Reviews from '../../views/Reviews/Reviews';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -24,7 +24,7 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   function goBack() {
-    history.push(location.state?.from ? location.state.from : "/");
+    history.push(location.state?.from ? location.state.from : '/');
   }
 
   return (
@@ -44,7 +44,7 @@ export default function MovieDetailsPage() {
           <p>{movie.overview}</p>
           <h2>Genres</h2>
           <ul>
-            {movie.genres.map((genre) => (
+            {movie.genres.map(genre => (
               <li key={genre.id}>{genre.name}</li>
             ))}
           </ul>
