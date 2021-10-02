@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import css from '../Searchbar/Searchbar.module.css';
 
 export default function SearchBar({ onSubmit }) {
   const [inSearch, setInSearch] = useState('');
@@ -15,10 +14,6 @@ export default function SearchBar({ onSubmit }) {
   return (
     <header>
       <form onSubmit={handleFormSubmit}>
-        <button type="submit">
-          <span>Search</span>
-        </button>
-
         <input
           type="text"
           autoComplete="off"
@@ -27,6 +22,10 @@ export default function SearchBar({ onSubmit }) {
           value={inSearch}
           onChange={handleChange}
         />
+
+        <button type="submit">
+          <span>Search</span>
+        </button>
       </form>
     </header>
   );

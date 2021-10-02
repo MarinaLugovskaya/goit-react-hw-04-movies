@@ -20,11 +20,10 @@ export default function Cast() {
         actors.map(actor => (
           <li key={actor.id}>
             <img
-              src={`${URL}/${actor.profile_path}`}
-              alt={actor.name}
-              width="100px"
+              src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+              alt="Poster"
             />
-            <h4> {actor.name}</h4>
+            <p> {actor.name}</p>
             <p>Character:{actor.character}</p>
           </li>
         ))}

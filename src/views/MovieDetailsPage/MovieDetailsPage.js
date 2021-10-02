@@ -1,16 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import {
   NavLink,
   useParams,
-  BrowserRouter as Router,
+  rowserRouter as Router,
   Route,
   useRouteMatch,
   useLocation,
   useHistory,
 } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+
 import { fetchMovieById } from '../../services/Api';
-import Cast from '../../views/Cast/Cast';
-import Reviews from '../../views/Reviews/Reviews';
+
+const Cast = lazy(() => import('../../views/Cast/Cast'));
+const Reviews = lazy(() => import('../../views/Reviews/Reviews'));
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -32,12 +35,14 @@ export default function MovieDetailsPage() {
       <button type="button" onClick={goBack}>
         Go Back
       </button>
+
       {movie && (
         <>
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
           />
+
           <h1>{movie.title}</h1>
           <p>User score: {movie.vote_average * 10}%</p>
           <h2>Overview</h2>
@@ -52,20 +57,23 @@ export default function MovieDetailsPage() {
       )}
 
       <p>Additional information</p>
+      <Suspense
+        fallback={<Loader type="Puff" color="#00BFFF" height={80} width={80} />}
+      >
+        <NavLink to={`${url}/cast`}>Cast</NavLink>
 
-      <NavLink to={`${url}/cast`}>Cast</NavLink>
+        <Route path={`${path}/cast`}>
+          <Cast />
+        </Route>
 
-      <Route path={`${path}/cast`}>
-        <Cast />
-      </Route>
+        <NavLink exact to={`${url}/reviews`}>
+          Reviews
+        </NavLink>
 
-      <NavLink exact to={`${url}/reviews`}>
-        Reviews
-      </NavLink>
-
-      <Route path={`${path}/reviews`}>
-        <Reviews />
-      </Route>
+        <Route path={`${path}/reviews`}>
+          <Reviews />
+        </Route>
+      </Suspense>
     </>
   );
 }

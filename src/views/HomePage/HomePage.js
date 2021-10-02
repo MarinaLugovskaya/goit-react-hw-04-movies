@@ -1,17 +1,15 @@
-import { NavLink, useRouteMatch } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { fetchMoviesToday } from "../../services/Api";
+import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { fetchMoviesToday } from '../../services/Api';
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
 
-  const { url } = useRouteMatch();
-
   useEffect(() => {
     fetchMoviesToday()
       .then(setMovies)
-      .catch((error) => setError({ error }));
+      .catch(error => setError({ error }));
   }, []);
 
   return (
@@ -19,7 +17,7 @@ export default function HomePage() {
       <h1>Trending Today</h1>
       {movies && (
         <ul>
-          {movies.map((movie) => (
+          {movies.map(movie => (
             <li key={movie.id}>
               <NavLink to={`/movies/${movie.id}`}>
                 <img
