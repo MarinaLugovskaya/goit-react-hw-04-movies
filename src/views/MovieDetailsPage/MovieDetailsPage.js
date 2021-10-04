@@ -60,13 +60,18 @@ export default function MovieDetailsPage() {
       <Suspense
         fallback={<Loader type="Puff" color="#00BFFF" height={80} width={80} />}
       >
-        <NavLink to={`${url}/cast`}>Cast</NavLink>
+        <NavLink to={{ pathname: `${url}/cast`, state: { ...location.state } }}>
+          Cast
+        </NavLink>
 
         <Route path={`${path}/cast`}>
           <Cast />
         </Route>
 
-        <NavLink exact to={`${url}/reviews`}>
+        <NavLink
+          exact
+          to={{ pathname: `${url}/reviews`, state: { ...location.state } }}
+        >
           Reviews
         </NavLink>
 

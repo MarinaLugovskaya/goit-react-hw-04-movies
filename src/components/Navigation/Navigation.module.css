@@ -3,11 +3,17 @@
   text-decoration: none;
   padding: 15px;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 35px;
   color: black;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .activeLink {
   composes: link;
-  color: blueviolet;
+  color: rgb(85, 32, 136);
+}
+
+.navigation {
+  text-align: center;
 }

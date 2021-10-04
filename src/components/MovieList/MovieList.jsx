@@ -1,28 +1,28 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import css from '../../components/MovieList/MovieList.module.css';
 
-export default function SearchList({ movies }) {
-  // const location = useLocation();
-  // const history = useHistory();
-
-  // function goBack() {
-  //   history.push(location.state?.from ? location.state.from : '/movies');
-  // }
+export default function SearchList({ movies, route }) {
+  const location = useLocation();
 
   return (
     <>
-      {/* <button type="button">Go Back</button> */}
-
-      <ul>
+      <ul className={css.movieList}>
         {movies &&
           movies.map(movie => (
-            <li key={movie.id}>
-              <NavLink to={`/movies/${movie.id}`}>
+            <li key={movie.id} className={css.movieListItem}>
+              <NavLink
+                to={{
+                  pathname: `/movies/${movie.id}`,
+                  state: { from: location },
+                }}
+              >
                 <img
+                  className={css.movieListItemImage}
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt={movie.title}
                 />
-                <p>{movie.title}</p>
+                <p className={css.movieListTitle}>{movie.title}</p>
               </NavLink>
             </li>
           ))}

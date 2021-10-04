@@ -5,6 +5,8 @@ import Loader from 'react-loader-spinner';
 import Container from '../components/Container/Container';
 import AppBar from '../components/AppBar/AppBar';
 
+import css from '../../src/Style.module.css';
+
 const NotFoundView = lazy(() => import('../views/NotFoundView/NotFoundView'));
 const HomePage = lazy(() => import('../views/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('../views/MoviesPage/MoviesPage'));
